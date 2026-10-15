@@ -53,7 +53,7 @@ pipeline {
         stage('Sécurité') {
                     steps {
                         echo 'Scan de dépendances...'
-                        sh 'sleep 5'
+                        sh 'sleep 5; exit 1'
                     }
                 }
         stage('Déploiement recette') {
