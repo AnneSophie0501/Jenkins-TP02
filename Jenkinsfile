@@ -56,7 +56,7 @@ pipeline {
                 }
             }
         }
-# Déploiement environements        
+        
         stage('Déploiement recette') {
             when {
                 allOf {
