@@ -34,6 +34,7 @@ pipeline {
             }
         }
         stage('Qualité') {
+            failFast true
             parallel {
                 stage('Lint') {
                     steps {
@@ -41,20 +42,21 @@ pipeline {
                         sh 'sleep 10'
                     }
                 }
-            }
-        }
-        stage('Tests unitaires') {
+                stage('Tests unitaires') {
                     steps {
                         echo 'Tests unitaires...'
                         sh 'sleep 15'
                     }
                 }
-        stage('Sécurité') {
+                stage('Sécurité') {
                     steps {
                         echo 'Scan de dépendances...'
-                        sh 'sleep 5; exit 1'
+                        sh 'sleep 5'
                     }
                 }
+            }
+        }
+# Déploiement environements        
         stage('Déploiement recette') {
             when {
                 allOf {
