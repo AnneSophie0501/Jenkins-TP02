@@ -33,6 +33,29 @@ pipeline {
                 sh 'test -f build/app.txt'
             }
         }
+        stage('Qualité') {
+            failFast true
+            parallel {
+                stage('Lint') {
+                    steps {
+                        echo 'Analyse statique...'
+                        sh 'sleep 10'
+                    }
+                }
+            }
+        }
+        stage('Tests unitaires') {
+                    steps {
+                        echo 'Tests unitaires...'
+                        sh 'sleep 15'
+                    }
+                }
+        stage('Sécurité') {
+                    steps {
+                        echo 'Scan de dépendances...'
+                        sh 'sleep 5'
+                    }
+                }
         stage('Déploiement recette') {
             when {
                 allOf {
